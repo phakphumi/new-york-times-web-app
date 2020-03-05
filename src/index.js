@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import AppRouter from './AppRouter';
+import Layout from './components/Layout/Layout';
 
 function App() {
   return (
-    <AppRouter />
-  )
+    <Layout>
+      <AppRouter />
+    </Layout>
+  );
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
