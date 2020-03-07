@@ -1,4 +1,4 @@
-import { ARTICLE_URI_PREFIX } from 'constants';
+import { ARTICLE_URI_PREFIX } from '_constants';
 import {
   get,
   map,
