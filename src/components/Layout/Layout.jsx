@@ -7,7 +7,8 @@ import { node } from 'prop-types';
 import React from 'react';
 
 import styles from './Layout.module.scss';
-const { Header, Content } = AntdLayout;
+
+const { Header, Content, Footer } = AntdLayout;
 
 function Layout({ children }) {
   return (
@@ -24,6 +25,9 @@ function Layout({ children }) {
       <Content className={styles.content}>
         {children}
       </Content>
+      <Footer className={styles.footer}>
+        Copyright ©2020 The New York Times Company. All Rights Reserved.
+      </Footer>
     </AntdLayout>
   );
 }

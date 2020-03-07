@@ -5,6 +5,7 @@ $header-height: 64px;
   top: 0px;
   width: 100%;
   height: $header-height;
+  z-index: 9999;
 
   .logo {
     float: left;
@@ -15,7 +16,10 @@ $header-height: 64px;
 }
 
 .content {
-  position: relative;
-  top: $header-height;
+  margin-top: $header-height;
   padding: 20px;
+}
+
+.footer {
+  text-align: center;
 }
