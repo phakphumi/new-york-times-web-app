@@ -1,5 +1,7 @@
 import { ARTICLE_URI_PREFIX } from '_constants';
+import { useContentLoading } from '_contexts';
 import { getTopStoryArticles } from '_services/getTopStoryArticles';
+import { message } from 'antd';
 import {
   get,
   map,
@@ -7,7 +9,10 @@ import {
   startCase,
 } from 'lodash';
 import moment from 'moment';
-import { useEffect, useState } from 'react';
+import {
+  useEffect,
+  useState,
+} from 'react';
 
 function transformArticles(results) {
   return map(results, (result) => ({
@@ -22,13 +27,24 @@ function transformArticles(results) {
 
 export function useHomePage() {
   const [articles, setArticles] = useState([]);
+  const {
+    setContentIsLoading,
+    setContentIsNotLoading,
+  } = useContentLoading();
 
   useEffect(() => {
     (async () => {
-      const response = await getTopStoryArticles();
-      setArticles(
-        transformArticles(get(response, ['data', 'results']))
-      );
+      try {
+        setContentIsLoading();
+        const response = await getTopStoryArticles();
+        setArticles(
+          transformArticles(get(response, ['data', 'results']))
+        );
+      } catch {
+        message.error('Something went wrong. Please try again later.');
+      } finally {
+        setContentIsNotLoading();
+      }
     })();
   }, []);
 

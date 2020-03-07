@@ -1,5 +1,6 @@
 import { IMAGE_URL_PREFIX } from '_constants';
 import { getArticleById } from '_services/searchArticle';
+import { message } from 'antd';
 import { get } from 'lodash';
 import moment from 'moment';
 import {
@@ -10,6 +11,8 @@ import {
   useHistory,
   useParams,
 } from 'react-router-dom';
+
+import { useContentLoading } from '../../contexts';
 
 function transformArticle(article) {
   return ({
@@ -27,6 +30,10 @@ export function useArticlePage() {
   const { articleId } = useParams();
   const history = useHistory();
   const [article, setArticle] = useState({});
+  const {
+    setContentIsLoading,
+    setContentIsNotLoading,
+  }=useContentLoading();
 
   const handleGoBackBtnClick = () => {
     history.goBack();
@@ -34,10 +41,17 @@ export function useArticlePage() {
 
   useEffect(() => {
     (async () => {
-      const response = await getArticleById(articleId);
-      setArticle(
-        transformArticle(get(response, ['data', 'response', 'docs', 0]))
-      );
+      try {
+        setContentIsLoading();
+        const response = await getArticleById(articleId);
+        setArticle(
+          transformArticle(get(response, ['data', 'response', 'docs', 0]))
+        );
+      } catch {
+        message.error('Something went wrong. Please try again later.');
+      } finally {
+        setContentIsNotLoading();
+      }
     })();
   }, []);
 
