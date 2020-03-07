@@ -5,12 +5,15 @@
         "libraryName": "antd",
         "libraryDirectory": "es",
         "style": "css"
-      },
+      }
+    ],
+    [
       "module-resolver", {
         "root": ["./src"],
         "alias": {
-          "_components": "./components",
-          "_pages": "./pages"
+          "_constants": "./src/constants",
+          "_components": "./src/components",
+          "_pages": "./src/pages"
         }
       }
     ]
