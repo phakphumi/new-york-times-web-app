@@ -1,14 +1,16 @@
 import {
+  ARTICLE_URI_PREFIX,
   NYTIMES_API_KEY,
-  TOP_STORY_API_URL,
+  SEARCH_API_URL,
 } from '_constants';
 import axios from 'axios';
 
-export function getTopStoryArticles() {
+export function getArticleById(articleId) {
   return axios.get(
-    TOP_STORY_API_URL,
+    SEARCH_API_URL,
     {
       params: {
+        fq: `_id:("${ARTICLE_URI_PREFIX}${articleId}")`,
         'api-key': NYTIMES_API_KEY,
       },
     }
