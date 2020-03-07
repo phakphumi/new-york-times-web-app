@@ -6,15 +6,18 @@ import { BrowserRouter } from 'react-router-dom';
 
 import AppRouter from './AppRouter';
 import Layout from './components/Layout/Layout';
+import StateProvider from './contexts';
 import * as serviceWorker from './serviceWorker';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Layout>
-        <AppRouter />
-      </Layout>
-    </BrowserRouter>
+    <StateProvider>
+      <BrowserRouter>
+        <Layout>
+          <AppRouter />
+        </Layout>
+      </BrowserRouter>
+    </StateProvider>
   );
 }
 
