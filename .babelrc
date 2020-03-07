@@ -5,6 +5,13 @@
         "libraryName": "antd",
         "libraryDirectory": "es",
         "style": "css"
+      },
+      "module-resolver", {
+        "root": ["./src"],
+        "alias": {
+          "_components": "./components",
+          "_pages": "./pages"
+        }
       }
     ]
   ]
