@@ -1,9 +1,11 @@
+import './index.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import * as serviceWorker from './serviceWorker';
+
 import AppRouter from './AppRouter';
 import Layout from './components/Layout/Layout';
+import * as serviceWorker from './serviceWorker';
 
 function App() {
   return (

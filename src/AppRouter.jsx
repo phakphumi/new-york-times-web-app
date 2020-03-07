@@ -4,6 +4,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+
 import HomePage from './pages/HomePage/HomePage';
 
 export default function AppRouter () {

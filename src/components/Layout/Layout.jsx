@@ -1,5 +1,5 @@
+import { Breadcrumb,Layout as AntdLayout, Menu } from 'antd';
 import React from 'react';
-import { Layout as AntdLayout, Menu, Breadcrumb } from 'antd';
 
 const { Header, Content, Footer } = AntdLayout;
 
