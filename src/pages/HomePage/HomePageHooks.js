@@ -31,7 +31,7 @@ export function useHomePage() {
       );
     })();
   }, []);
-  console.log({ articles });
+
   return {
     articles,
   };
