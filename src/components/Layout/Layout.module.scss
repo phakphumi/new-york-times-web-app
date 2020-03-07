@@ -20,6 +20,16 @@ $footer-height: 46px;
   margin-top: $header-height;
   padding: 20px;
   min-height: calc(100vh - #{$header-height} - #{$footer-height});
+
+  .spinner {
+    width: 100%;
+    height: calc(100vh - 40px - #{$header-height} - #{$footer-height});
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.5);
+  }
 }
 
 .footer {

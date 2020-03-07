@@ -1,17 +1,23 @@
+import { LoadingOutlined } from '@ant-design/icons';
 import {
   Col,
   Layout as AntdLayout,
   Row,
+  Spin,
 } from 'antd';
 import { node } from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { useContentLoading } from '../../contexts';
 import styles from './Layout.module.scss';
+
 
 const { Header, Content, Footer } = AntdLayout;
 
 function Layout({ children }) {
+  const { isContentLoading } = useContentLoading();
+
   return (
     <AntdLayout className="layout">
       <Header className={styles.header}>
@@ -26,7 +32,14 @@ function Layout({ children }) {
         </Row>
       </Header>
       <Content className={styles.content}>
-        {children}
+        <Spin
+          className={styles.spinner}
+          spinning={isContentLoading}
+          tip="Loading..."
+          indicator={<LoadingOutlined />}
+        >
+          {children}
+        </Spin>
       </Content>
       <Footer className={styles.footer}>
         Copyright ©2020 The New York Times Company. All Rights Reserved.
