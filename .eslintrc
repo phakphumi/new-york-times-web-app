@@ -28,6 +28,7 @@
     "import/order": "off",
     "indent": ["error", 2, { "SwitchCase": 1, "ignoreComments": true } ],
     "no-trailing-spaces": "error",
+    "object-curly-spacing": ["error", "always"],
     "quotes": ["error", "single", { "avoidEscape": true }],
     "semi": "error",
     "simple-import-sort/sort": "error",
