@@ -1,7 +1,6 @@
 import { ARTICLE_URI_PREFIX } from '_constants';
 import { useContentLoading } from '_contexts';
 import { getTopStoryArticles } from '_services/getTopStoryArticles';
-import { message } from 'antd';
 import {
   get,
   map,
@@ -13,6 +12,7 @@ import {
   useEffect,
   useState,
 } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function transformArticles(results) {
   return map(results, (result) => ({
@@ -26,6 +26,7 @@ function transformArticles(results) {
 }
 
 export function useHomePage() {
+  const history = useHistory();
   const [articles, setArticles] = useState([]);
   const {
     setContentIsLoading,
@@ -41,7 +42,7 @@ export function useHomePage() {
           transformArticles(get(response, ['data', 'results']))
         );
       } catch {
-        message.error('Something went wrong. Please try again later.');
+        history.push('/error');
       } finally {
         setContentIsNotLoading();
       }

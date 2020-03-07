@@ -1,6 +1,5 @@
 import { IMAGE_URL_PREFIX } from '_constants';
 import { getArticleById } from '_services/searchArticle';
-import { message } from 'antd';
 import { get } from 'lodash';
 import moment from 'moment';
 import {
@@ -48,7 +47,7 @@ export function useArticlePage() {
           transformArticle(get(response, ['data', 'response', 'docs', 0]))
         );
       } catch {
-        message.error('Something went wrong. Please try again later.');
+        history.push('/error');
       } finally {
         setContentIsNotLoading();
       }
