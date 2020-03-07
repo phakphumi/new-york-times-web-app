@@ -2,16 +2,18 @@ import './index.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import AppRouter from './AppRouter';
 import Layout from './components/Layout/Layout';
 import * as serviceWorker from './serviceWorker';
-
 function App() {
   return (
-    <Layout>
-      <AppRouter />
-    </Layout>
+    <BrowserRouter>
+      <Layout>
+        <AppRouter />
+      </Layout>
+    </BrowserRouter>
   );
 }
 
