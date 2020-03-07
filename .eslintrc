@@ -35,11 +35,13 @@
     "simple-import-sort/sort": "error",
     "sort-imports": "off"
   },
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      "_components/*": ["components/*"],
-      "_pages/*": ["pages/*"]
+  "settings": {
+    "import/resolver": {
+      "babel-module": {
+        "_constants": "./src/constants",
+        "_components": "./src/components",
+        "_pages": "./src/pages"
+      }
     }
   }
 }
