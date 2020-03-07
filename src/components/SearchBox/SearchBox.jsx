@@ -4,11 +4,9 @@ import React from 'react';
 
 export default function SearchBox() {
   return (
-    <>
-      <Input
-        placeholder="Search your article"
-        prefix={<SearchOutlined />}
-      />
-    </>
+    <Input
+      placeholder="Search your article"
+      prefix={<SearchOutlined />}
+    />
   );
 }

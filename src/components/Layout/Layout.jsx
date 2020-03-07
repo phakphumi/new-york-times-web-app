@@ -1,39 +1,35 @@
 import {
-  Breadcrumb,
   Col,
   Layout as AntdLayout,
   Row,
 } from 'antd';
+import { node } from 'prop-types';
 import React from 'react';
 
-import SearchBox from '../SearchBox/SearchBox';
 import styles from './Layout.module.scss';
-const { Header, Content, Footer } = AntdLayout;
+const { Header, Content } = AntdLayout;
 
-export default function Layout() {
+function Layout({ children }) {
   return (
     <AntdLayout className="layout">
       <Header className={styles.header}>
-        <Row align="middle">
-          <Col md={12}>
+        <Row justify="center" align="middle">
+          <Col>
             <div className={styles.logo}>
               7 Peaks News
             </div>
           </Col>
-          <Col md={12}>
-            <SearchBox />
-          </Col>
         </Row>
       </Header>
       <Content className={styles.content}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
-        <div className={styles.siteLayoutContent}>Content</div>
+        {children}
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
     </AntdLayout>
   );
 }
+
+Layout.propTypes = {
+  children: node.isRequired,
+};
+
+export default Layout;
