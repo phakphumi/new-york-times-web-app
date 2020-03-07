@@ -14,6 +14,7 @@ function transformArticles(results) {
     publishedDate: moment(get(result, 'published_date')).fromNow(),
     thumbnailUrl: get(result, ['multimedia', 0, 'url']),
     section: get(result, 'section') === 'us' ? 'US' : startCase(get(result, 'section')),
+    articleUrl: get(result, 'url'),
   }));
 }
 
