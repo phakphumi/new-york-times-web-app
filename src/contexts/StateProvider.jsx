@@ -13,7 +13,7 @@ export const ACTION_TYPE = {
 };
 
 const initialState = {
-  isContentLoading: true,
+  isContentLoading: false,
 };
 
 function reducer(state, { type }) {

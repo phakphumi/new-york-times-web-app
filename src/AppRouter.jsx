@@ -6,15 +6,16 @@ import {
 
 import ArticlePage from './pages/ArticlePage/ArticlePage';
 import HomePage from './pages/HomePage/HomePage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 export default function AppRouter () {
   return (
     <Switch>
-      <Route path="/article/:articleId" component={ArticlePage}/>
-      <Route path="/home" component={HomePage}/>
-      <Route path="/" component={HomePage}/>
+      <Route exact path="/article/:articleId" component={ArticlePage}/>
+      <Route exact path="/home" component={HomePage}/>
+      <Route exact path="/" component={HomePage}/>
 
-      <Route component={HomePage}/>
+      <Route component={NotFoundPage}/>
     </Switch>
   );
 }
