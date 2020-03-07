@@ -13,7 +13,8 @@
         "alias": {
           "_constants": "./src/constants",
           "_components": "./src/components",
-          "_pages": "./src/pages"
+          "_pages": "./src/pages",
+          "_services": "./src/services"
         }
       }
     ]
