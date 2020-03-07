@@ -13,7 +13,8 @@
   },
   "plugins": [
     "react",
-    "react-hooks"
+    "react-hooks",
+    "simple-import-sort"
   ],
   "extends": [
     "eslint:recommended",
@@ -23,6 +24,9 @@
     "comma-dangle": ["error", "always-multiline"],
     "eol-last": "error",
     "react-hooks/rules-of-hooks": "error",
-    "semi": "error"
+    "import/order": "off",
+    "semi": "error",
+    "simple-import-sort/sort": "error",
+    "sort-imports": "off"
   }
 }
