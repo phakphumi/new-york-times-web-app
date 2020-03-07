@@ -13,6 +13,7 @@
         "alias": {
           "_constants": "./src/constants",
           "_components": "./src/components",
+          "_contexts": "./src/contexts",
           "_pages": "./src/pages",
           "_services": "./src/services"
         }
