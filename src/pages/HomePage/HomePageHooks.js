@@ -1,3 +1,4 @@
+import { ARTICLE_URI_PREFIX } from 'constants';
 import {
   get,
   map,
@@ -8,8 +9,6 @@ import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { getTopStoryArticles } from 'services/getTopStoryArticles';
 
-const URI_PREFIX = 'nyt://article/';
-
 function transformArticles(results) {
   return map(results, (result) => ({
     title: get(result, 'title'),
@@ -17,7 +16,7 @@ function transformArticles(results) {
     publishedDate: moment(get(result, 'published_date')).fromNow(),
     thumbnailUrl: get(result, ['multimedia', 0, 'url']),
     section: get(result, 'section') === 'us' ? 'US' : startCase(get(result, 'section')),
-    articleId: replace(get(result, 'uri'), URI_PREFIX, ''),
+    articleId: replace(get(result, 'uri'), ARTICLE_URI_PREFIX, ''),
   }));
 }
 
