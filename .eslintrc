@@ -34,5 +34,12 @@
     "semi": "error",
     "simple-import-sort/sort": "error",
     "sort-imports": "off"
+  },
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "_components/*": ["components/*"],
+      "_pages/*": ["pages/*"]
+    }
   }
 }
