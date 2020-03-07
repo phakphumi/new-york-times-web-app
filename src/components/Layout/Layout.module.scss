@@ -1,0 +1,21 @@
+$header-height: 64px;
+
+.header {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: $header-height;
+
+  .logo {
+    float: left;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+.content {
+  position: relative;
+  top: $header-height;
+  padding: 20px;
+}

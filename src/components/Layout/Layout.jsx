@@ -1,33 +1,35 @@
-import { Breadcrumb,Layout as AntdLayout, Menu } from 'antd';
+import {
+  Col,
+  Layout as AntdLayout,
+  Row,
+} from 'antd';
+import { node } from 'prop-types';
 import React from 'react';
 
-const { Header, Content, Footer } = AntdLayout;
+import styles from './Layout.module.scss';
+const { Header, Content } = AntdLayout;
 
-export default function Layout() {
+function Layout({ children }) {
   return (
     <AntdLayout className="layout">
-      <Header>
-        <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={['2']}
-          style={{ lineHeight: '64px' }}
-        >
-          <Menu.Item key="1">nav 1</Menu.Item>
-          <Menu.Item key="2">nav 2</Menu.Item>
-          <Menu.Item key="3">nav 3</Menu.Item>
-        </Menu>
+      <Header className={styles.header}>
+        <Row justify="center" align="middle">
+          <Col>
+            <div className={styles.logo}>
+              7 Peaks News
+            </div>
+          </Col>
+        </Row>
       </Header>
-      <Content style={{ padding: '0 50px' }}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
-        <div className="site-layout-content">Content</div>
+      <Content className={styles.content}>
+        {children}
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
     </AntdLayout>
   );
 }
+
+Layout.propTypes = {
+  children: node.isRequired,
+};
+
+export default Layout;
