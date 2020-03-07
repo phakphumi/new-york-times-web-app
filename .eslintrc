@@ -23,8 +23,12 @@
   "rules": {
     "comma-dangle": ["error", "always-multiline"],
     "eol-last": "error",
+    "key-spacing": "error",
     "react-hooks/rules-of-hooks": "error",
     "import/order": "off",
+    "indent": ["error", 2, { "SwitchCase": 1, "ignoreComments": true } ],
+    "no-trailing-spaces": "error",
+    "quotes": ["error", "single", { "avoidEscape": true }],
     "semi": "error",
     "simple-import-sort/sort": "error",
     "sort-imports": "off"
