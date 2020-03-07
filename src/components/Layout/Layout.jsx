@@ -5,6 +5,7 @@ import {
 } from 'antd';
 import { node } from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './Layout.module.scss';
 
@@ -16,9 +17,11 @@ function Layout({ children }) {
       <Header className={styles.header}>
         <Row justify="center" align="middle">
           <Col>
-            <div className={styles.logo}>
+            <Link to="/">
+              <div className={styles.logo}>
               7 Peaks News
-            </div>
+              </div>
+            </Link>
           </Col>
         </Row>
       </Header>
