@@ -5,20 +5,26 @@ import {
 import { string } from 'prop-types';
 import React from 'react';
 
-// import styles from './ArticleTitle.module.scss';
+import styles from './ArticleDescription.module.scss';
 
 function ArticleDescription({
   abstract,
   publishedDate,
+  section,
 }) {
   return (
     <div >
-      <Row>
+      <Row gutter={[0, 8]}>
         <Col>
-          {abstract}
+          <div className={styles.abstract}>
+            {abstract}
+          </div>
         </Col>
       </Row>
-      <Row>
+      <Row gutter={8}>
+        <Col>
+          {section}
+        </Col>
         <Col>
           {publishedDate}
         </Col>
@@ -30,6 +36,7 @@ function ArticleDescription({
 ArticleDescription.propTypes = {
   abstract: string.isRequired,
   publishedDate: string.isRequired,
+  section: string.isRequired,
 };
 
 export default ArticleDescription;

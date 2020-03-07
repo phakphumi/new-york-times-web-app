@@ -12,6 +12,7 @@ export default function ArticleCard({
   abstract,
   thumbnailUrl,
   publishedDate,
+  section,
 }) {
   return (
     <Card
@@ -21,7 +22,13 @@ export default function ArticleCard({
     >
       <Meta
         title={<ArticleTitle>{title}</ArticleTitle>}
-        description={<ArticleDescription abstract={abstract} publishedDate={publishedDate} />}
+        description={
+          <ArticleDescription
+            abstract={abstract}
+            publishedDate={publishedDate}
+            section={section}
+          />
+        }
       />
     </Card>
   );
@@ -32,4 +39,5 @@ ArticleCard.propTypes = {
   abstract: string.isRequired,
   thumbnailUrl: string.isRequired,
   publishedDate: string.isRequired,
+  section: string.isRequired,
 };
