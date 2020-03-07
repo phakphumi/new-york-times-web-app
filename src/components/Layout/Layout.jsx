@@ -1,12 +1,13 @@
-import React from 'react';
 import {
-  Layout as AntdLayout,
   Breadcrumb,
-  Row,
   Col,
- } from 'antd';
-import styles from './Layout.module.scss';
+  Layout as AntdLayout,
+  Row,
+} from 'antd';
+import React from 'react';
+
 import SearchBox from '../SearchBox/SearchBox';
+import styles from './Layout.module.scss';
 const { Header, Content, Footer } = AntdLayout;
 
 export default function Layout() {
