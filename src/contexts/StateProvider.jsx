@@ -18,7 +18,6 @@ const initialState = {
   articles: {
     data: [],
     search: {
-      isSearching: false,
       debouncedTerm: null,
       currentPage: 0,
     },

@@ -32,10 +32,21 @@ export function useArticles() {
       [dispatch, articles.data]
     ),
     setDebouncedSearchTerm: useCallback(
-      (debouncedTerm) => dispatch({
-        type: ACTION_TYPE.UPDATE_ARTICLES_SEARCH,
-        debouncedTerm,
-      })
+      (debouncedTerm) => {
+        if (debouncedTerm) {
+          dispatch({
+            type: ACTION_TYPE.UPDATE_ARTICLES_SEARCH,
+            debouncedTerm,
+          });
+        } else {
+          dispatch({
+            type: ACTION_TYPE.UPDATE_ARTICLES_SEARCH,
+            debouncedTerm,
+            currentPage: 0,
+          });
+        }
+      }
+
     ),
     increaseCurrentPageSearch: useCallback(
       () => dispatch({
