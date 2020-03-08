@@ -1,6 +1,6 @@
 import { useContentLoading } from '_contexts';
-import { getArticleById } from '_services/searchArticle';
-import { transformArticleFromSearchAPI } from '_utils/articlesUtils';
+import { getArticleById } from '_services/searchArticleService';
+import { transformArticleFromSearchAPI } from '_utils/articlesUtil';
 import { get } from 'lodash';
 import {
   useEffect,

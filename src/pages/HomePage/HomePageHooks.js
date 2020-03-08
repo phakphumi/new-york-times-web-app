@@ -1,7 +1,7 @@
 import { useContentLoading } from '_contexts';
 import { useArticles } from '_contexts/articlesHooks';
-import { getTopStoryArticles } from '_services/getTopStoryArticles';
-import { transformArticlesFromTopStoriesAPI } from '_utils/articlesUtils';
+import { getTopStories } from '_services/topStoriesService';
+import { transformArticlesFromTopStoriesAPI } from '_utils/articlesUtil';
 import { get } from 'lodash';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -23,10 +23,10 @@ export function useHomePage() {
     increaseCurrentPageSearch();
   };
 
-  const getTopStories = async () => {
+  const fetchTopStories = async () => {
     try {
       setContentIsLoading();
-      const response = await getTopStoryArticles();
+      const response = await getTopStories();
       updateArticles(
         transformArticlesFromTopStoriesAPI(get(response, ['data', 'results']))
       );
@@ -39,7 +39,7 @@ export function useHomePage() {
 
   useEffect(() => {
     if (!debouncedSearchTerm) {
-      getTopStories();
+      fetchTopStories();
     }
   }, [debouncedSearchTerm]);
 
