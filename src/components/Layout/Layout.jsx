@@ -42,7 +42,11 @@ function Layout({ children }) {
         </Spin>
       </Content>
       <Footer className={styles.footer}>
-        Copyright ©2020 The New York Times Company. All Rights Reserved.
+        <Row justify="center" align="center">
+          <Col>
+            Copyright ©2020 The New York Times Company. All Rights Reserved.
+          </Col>
+        </Row>
       </Footer>
     </AntdLayout>
   );

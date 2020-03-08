@@ -37,8 +37,9 @@ function ArticlePage() {
         {
           articleImageUrl && (
             <Row gutter={[0, 16]} justify="center">
-              <Col>
+              <Col md={16} sm={24} xs={24}>
                 <img
+                  className={styles.articleImage}
                   alt="article-img"
                   src={articleImageUrl}
                 />
