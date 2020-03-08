@@ -1,68 +1,26 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# New York Times Web Application
 
-## Available Scripts
+## How to start application
+1. run `yarn install` at the root project folder.
+2. run `yarn start`.
+3. enter to application with [http://localhost:3000](http://localhost:3000).
+4. enjoy.
 
-In the project directory, you can run:
 
-### `yarn start`
+## User Story
+### Homepage
+- when user enter to homepage on `/` or `/home` path, it should render current top stories from New York Times API as a card per article.
+- when user click on each card, it will redirect user to `article` page
+### Search Function
+- when user is typing on search bar which belongs to home page.
+  - it will not immediately search but wait til end of input for `1.5s`. After that the page will be locked with loading state then show most relavent results if sort filter is not apply else it should show contents following the selected filter.
+  - each time page send search request articles will be replaced with 10 response results.
+- when user select sort filter
+  - if the search term is empty, page should stay in the same content.
+  - if the search term has any text, page will request for 10 newest/oldest relates to search term. And also, replace old articles.
+- when search result is applied, show more button will show at the bottom of page.
+  - when user click on show more button, it will request for ten more articles with selected filter
+### Article Page
+- when user enter to article page on `/article/:article_id`, it will render the content along with publication date and author. it also provides `read more` hyperlink for user who want to read full content.
+- when user click on back button, it will redirect user to the previous page.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
