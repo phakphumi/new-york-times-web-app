@@ -1,3 +1,4 @@
+import SearchBox from '_components/SearchBox/SearchBox';
 import {
   Col,
   Row,
@@ -18,6 +19,9 @@ export default function HomePage () {
 
   return (
     <div>
+      <Row>
+        <SearchBox />
+      </Row>
       <Row gutter={[16, 16]}>
         {
           map(articles, (article, index) => (
