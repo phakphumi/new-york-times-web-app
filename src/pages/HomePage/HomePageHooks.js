@@ -51,5 +51,6 @@ export function useHomePage() {
 
   return {
     articles,
+    setArticles,
   };
 }

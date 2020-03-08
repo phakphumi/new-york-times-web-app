@@ -1,4 +1,3 @@
-import SearchBox from '_components/SearchBox/SearchBox';
 import {
   Col,
   Row,
@@ -12,15 +11,19 @@ import { Link } from 'react-router-dom';
 
 import ArticleCard from './ArticleCard/ArticleCard';
 import { useHomePage } from './HomePageHooks';
+import SearchBox from './SearchBox/SearchBox';
 
 
 export default function HomePage () {
-  const { articles } = useHomePage();
+  const {
+    articles,
+    setArticles,
+  } = useHomePage();
 
   return (
     <div>
       <Row>
-        <SearchBox />
+        <SearchBox setArticles={setArticles} />
       </Row>
       <Row gutter={[16, 16]}>
         {
