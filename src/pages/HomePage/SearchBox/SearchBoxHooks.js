@@ -59,11 +59,10 @@ export function useSearchBox({
   };
 
   useEffect(() => {
-    setHomePageSearchTerm(debouncedSearchTerm);
-
     if (debouncedSearchTerm) {
       getArticles(debouncedSearchTerm);
     }
+    setHomePageSearchTerm(debouncedSearchTerm);
   }, [debouncedSearchTerm]);
 
   return {

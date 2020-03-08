@@ -28,29 +28,37 @@ function transformArticles(results) {
 export function useHomePage() {
   const history = useHistory();
   const [articles, setArticles] = useState([]);
+  const [currentSearchTerm, setCurrentSearchTerm] = useState(null);
   const {
     setContentIsLoading,
     setContentIsNotLoading,
   } = useContentLoading();
 
+  const getTopStories = async () => {
+    try {
+      setContentIsLoading();
+      const response = await getTopStoryArticles();
+      setArticles(
+        transformArticles(get(response, ['data', 'results']))
+      );
+    } catch {
+      history.push('/error');
+    } finally {
+      setContentIsNotLoading();
+    }
+  };
+
   useEffect(() => {
-    (async () => {
-      try {
-        setContentIsLoading();
-        const response = await getTopStoryArticles();
-        setArticles(
-          transformArticles(get(response, ['data', 'results']))
-        );
-      } catch {
-        history.push('/error');
-      } finally {
-        setContentIsNotLoading();
-      }
-    })();
-  }, []);
+    if (!currentSearchTerm) {
+      getTopStories();
+    }
+  }, [currentSearchTerm]);
 
   return {
     articles,
+    currentSearchTerm,
+
     setArticles,
+    setCurrentSearchTerm,
   };
 }
