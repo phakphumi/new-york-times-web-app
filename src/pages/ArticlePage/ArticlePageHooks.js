@@ -1,5 +1,5 @@
 import { useContentLoading } from '_contexts';
-import { getArticleById } from '_services/searchArticle';
+import { getArticleById } from '_services/searchArticleService';
 import { transformArticleFromSearchAPI } from '_utils/articlesUtils';
 import { get } from 'lodash';
 import {

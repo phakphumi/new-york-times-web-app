@@ -1,6 +1,6 @@
 import { useContentLoading } from '_contexts';
 import { useArticles } from '_contexts/articlesHooks';
-import { getArticlesByTerm } from '_services/searchArticle';
+import { getArticlesByTerm } from '_services/searchArticleService';
 import { transformArticlesFromSearchAPI } from '_utils/articlesUtils';
 import { useDebounce } from '_utils/useDebounce';
 import { get } from 'lodash';

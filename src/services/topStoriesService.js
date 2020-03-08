@@ -4,7 +4,7 @@ import {
 } from '_constants';
 import axios from 'axios';
 
-export function getTopStoryArticles() {
+export function getTopStories() {
   return axios.get(
     TOP_STORY_API_URL,
     {
