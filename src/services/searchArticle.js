@@ -16,3 +16,17 @@ export function getArticleById(articleId) {
     }
   );
 }
+
+export function getArticlesByTerm(searchTerm) {
+  return axios.get(
+    SEARCH_API_URL,
+    {
+      params: {
+        q: searchTerm,
+        fq: 'document_type:("article")',
+        'api-key': NYTIMES_API_KEY,
+      },
+    }
+  );
+}
+
