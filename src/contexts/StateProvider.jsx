@@ -48,7 +48,6 @@ function reducer(state, { type, ...restProps }) {
       };
     }
     case ACTION_TYPE.UPDATE_ARTICLES_SEARCH: {
-      console.log({ state });
       return {
         ...state,
         articles: {

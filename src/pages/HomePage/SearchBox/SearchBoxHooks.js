@@ -22,12 +22,14 @@ export function useSearchBox() {
     updateArticles,
     appendArticles,
     setDebouncedSearchTerm,
+    resetSearchCurrentPage,
   } = useArticles();
 
   const searchArticles = async (debouncedSearchTerm, sortBy) => {
     try {
       setContentIsLoading();
       const response = await getArticlesByTerm(debouncedSearchTerm, sortBy);
+
       updateArticles(
         transformArticlesFromSearchAPI(get(response, ['data', 'response', 'docs']))
       );
@@ -56,22 +58,31 @@ export function useSearchBox() {
     setSearchTerm(e.target.value);
   };
 
-  const handleSortBy = (sort) => {
+  const handleSortBy = async (sort) => {
     setSortBy(sort);
     if (debouncedSearchTerm) {
-      searchArticles(debouncedSearchTerm, sort);
+      await searchArticles(debouncedSearchTerm, sort);
     }
+    resetSearchCurrentPage();
   };
 
   useEffect(() => {
-    setDebouncedSearchTerm(debouncedSearchTerm);
-    if (debouncedSearchTerm) {
-      searchArticles(debouncedSearchTerm, sortBy);
-    }
+    return () => {
+      resetSearchCurrentPage();
+    };
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      if (debouncedSearchTerm) {
+        await searchArticles(debouncedSearchTerm, sortBy);
+      }
+      setDebouncedSearchTerm(debouncedSearchTerm);
+    })();
   }, [debouncedSearchTerm]);
 
   useEffect(() => {
-    if (debouncedSearchTerm) {
+    if (debouncedSearchTerm && currentPage > 0) {
       showMoreArticles(debouncedSearchTerm, sortBy, currentPage);
     }
   }, [currentPage]);
