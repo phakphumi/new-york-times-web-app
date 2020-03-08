@@ -8,8 +8,10 @@ import {
   useEffect,
   useState,
 } from 'react';
+import { useHistory } from 'react-router-dom';
 
 export function useSearchBox() {
+  const history = useHistory();
   const [searchTerm, setSearchTerm] = useState(null);
   const [sortBy, setSortBy] = useState(null);
   const debouncedSearchTerm = useDebounce(searchTerm, 1500);
