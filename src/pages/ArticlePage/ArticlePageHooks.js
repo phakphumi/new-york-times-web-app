@@ -1,3 +1,4 @@
+import { useContentLoading } from '_/contexts';
 import { IMAGE_URL_PREFIX } from '_constants';
 import { getArticleById } from '_services/searchArticle';
 import { get } from 'lodash';
@@ -10,8 +11,6 @@ import {
   useHistory,
   useParams,
 } from 'react-router-dom';
-
-import { useContentLoading } from '../../contexts';
 
 function transformArticle(article) {
   return ({

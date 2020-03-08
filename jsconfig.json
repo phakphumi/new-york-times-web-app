@@ -2,11 +2,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "_config": ["./src/constants.js"],
+      "_constants": ["./src/constants.js"],
       "_components/*": ["./src/components/*"],
       "_contexts/*": ["./src/contexts/*"],
       "_pages/*": ["./src/pages/*"],
-      "_services/*": ["./src/services/*"]
+      "_services/*": ["./src/services/*"],
+      "_utils/*": ["./src/utils/*"]
     }
   }
 }
