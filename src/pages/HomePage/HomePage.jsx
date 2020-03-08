@@ -22,11 +22,11 @@ export default function HomePage () {
 
     handleShowMoreBtnClick,
   } = useHomePage();
-  console.log({ articles });
+
   return (
     <div>
-      <Row gutter={[0, 16]}>
-        <Col md={24}>
+      <Row gutter={[0, 16]} justify="center">
+        <Col md={12} sm={24} xs={24}>
           <SearchBox />
         </Col>
       </Row>
@@ -45,7 +45,7 @@ export default function HomePage () {
       <Row gutter={[16, 16]}>
         {
           map(articles, (article, index) => (
-            <Col md={8} key={index}>
+            <Col md={8} sm={12} xs={24} key={index}>
               <Link to={`article/${get(article, 'articleId')}`}>
                 <ArticleCard
                   title={get(article, 'title')}

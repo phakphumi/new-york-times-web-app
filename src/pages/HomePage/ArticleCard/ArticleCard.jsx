@@ -17,7 +17,6 @@ export default function ArticleCard({
   return (
     <Card
       hoverable
-      style={{ width: '100%' }}
       cover={thumbnailUrl && <img alt="thumbnail" src={thumbnailUrl} />}
     >
       <Meta

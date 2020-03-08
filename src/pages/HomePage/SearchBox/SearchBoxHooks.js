@@ -32,6 +32,7 @@ function transformArticles(results) {
 
 export function useSearchBox() {
   const [searchTerm, setSearchTerm] = useState(null);
+  const [sortBy, setSortBy] = useState(null);
   const debouncedSearchTerm = useDebounce(searchTerm, 1500);
   const {
     setContentIsLoading,
@@ -44,14 +45,10 @@ export function useSearchBox() {
     setDebouncedSearchTerm,
   } = useArticles();
 
-  const handleSearchTermChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const searchArticles = async (debouncedSearchTerm) => {
+  const searchArticles = async (debouncedSearchTerm, sortBy) => {
     try {
       setContentIsLoading();
-      const response = await getArticlesByTerm(debouncedSearchTerm);
+      const response = await getArticlesByTerm(debouncedSearchTerm, sortBy);
       updateArticles(
         transformArticles(get(response, ['data', 'response', 'docs']))
       );
@@ -62,10 +59,10 @@ export function useSearchBox() {
     }
   };
 
-  const showMoreArticles = async (debouncedSearchTerm, currentPage) => {
+  const showMoreArticles = async (debouncedSearchTerm, sortBy, currentPage) => {
     try {
       setContentIsLoading();
-      const response = await getArticlesByTerm(debouncedSearchTerm, currentPage);
+      const response = await getArticlesByTerm(debouncedSearchTerm, sortBy, currentPage);
       appendArticles(
         transformArticles(get(response, ['data', 'response', 'docs']))
       );
@@ -76,20 +73,32 @@ export function useSearchBox() {
     }
   };
 
+  const handleSearchTermChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSortBy = (sort) => {
+    setSortBy(sort);
+    if (debouncedSearchTerm) {
+      searchArticles(debouncedSearchTerm, sort);
+    }
+  };
+
   useEffect(() => {
     setDebouncedSearchTerm(debouncedSearchTerm);
     if (debouncedSearchTerm) {
-      searchArticles(debouncedSearchTerm);
+      searchArticles(debouncedSearchTerm, sortBy);
     }
   }, [debouncedSearchTerm]);
 
   useEffect(() => {
     if (debouncedSearchTerm) {
-      showMoreArticles(debouncedSearchTerm, currentPage);
+      showMoreArticles(debouncedSearchTerm, sortBy, currentPage);
     }
   }, [currentPage]);
 
   return {
     handleSearchTermChange,
+    handleSortBy,
   };
 }

@@ -55,8 +55,10 @@ export function useHomePage() {
   };
 
   useEffect(() => {
-    getTopStories();
-  }, []);
+    if (!debouncedSearchTerm) {
+      getTopStories();
+    }
+  }, [debouncedSearchTerm]);
 
   return {
     articles,
