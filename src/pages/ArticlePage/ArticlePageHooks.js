@@ -1,7 +1,10 @@
 import { IMAGE_URL_PREFIX } from '_constants';
 import { useContentLoading } from '_contexts';
 import { getArticleById } from '_services/searchArticle';
-import { get } from 'lodash';
+import {
+  chain,
+  get,
+} from 'lodash';
 import moment from 'moment';
 import {
   useEffect,
@@ -13,11 +16,13 @@ import {
 } from 'react-router-dom';
 
 function transformArticle(article) {
+  const articleImagePath = chain(article).get('multimedia').find({ subtype: 'xlarge' }).get('url').value();
+
   return ({
     title: get(article, ['headline', 'main']),
     abstract: get(article, 'abstract'),
     leadParagraph: get(article, 'lead_paragraph'),
-    articleImageUrl: `${IMAGE_URL_PREFIX}${get(article, ['multimedia', 0, 'url'])}`,
+    articleImageUrl: articleImagePath && `${IMAGE_URL_PREFIX}${articleImagePath}`,
     author: get(article, ['byline', 'original']) || get(article, ['source']),
     publishedDate: moment(get(article, 'pub_date')).format('MMM DD, YYYY'),
     nytimesArticleUrl: get(article, 'web_url'),
