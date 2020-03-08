@@ -17,11 +17,12 @@ export function getArticleById(articleId) {
   );
 }
 
-export function getArticlesByTerm(searchTerm) {
+export function getArticlesByTerm(searchTerm, page = 0) {
   return axios.get(
     SEARCH_API_URL,
     {
       params: {
+        page,
         q: searchTerm,
         fq: 'document_type:("article")',
         'api-key': NYTIMES_API_KEY,

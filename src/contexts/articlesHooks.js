@@ -26,7 +26,7 @@ export function useArticles() {
         type: ACTION_TYPE.UPDATE_ARTICLES,
         data: [
           ...articles.data,
-          transformedArticles,
+          ...transformedArticles,
         ],
       }),
       [dispatch, articles.data]
@@ -35,6 +35,12 @@ export function useArticles() {
       (debouncedTerm) => dispatch({
         type: ACTION_TYPE.UPDATE_ARTICLES_SEARCH,
         debouncedTerm,
+      })
+    ),
+    increaseCurrentPageSearch: useCallback(
+      () => dispatch({
+        type: ACTION_TYPE.UPDATE_ARTICLES_SEARCH,
+        currentPage: articles.search.currentPage + 1,
       })
     ),
   };

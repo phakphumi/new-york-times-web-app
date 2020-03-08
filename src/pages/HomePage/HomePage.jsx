@@ -1,4 +1,5 @@
 import {
+  Button,
   Col,
   Row,
 } from 'antd';
@@ -18,6 +19,8 @@ export default function HomePage () {
   const {
     articles,
     debouncedSearchTerm,
+
+    handleShowMoreBtnClick,
   } = useHomePage();
   console.log({ articles });
   return (
@@ -56,6 +59,17 @@ export default function HomePage () {
           ))
         }
       </Row>
+      {
+        debouncedSearchTerm && (
+          <Row justify="center">
+            <Col>
+              <Button onClick={handleShowMoreBtnClick}>
+                Show more results
+              </Button>
+            </Col>
+          </Row>
+        )
+      }
     </div>
   );
 }

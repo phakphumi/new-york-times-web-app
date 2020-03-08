@@ -31,11 +31,14 @@ export function useHomePage() {
   } = useContentLoading();
   const {
     articles,
-    search: {
-      debouncedTerm: debouncedSearchTerm,
-    },
+    search: { debouncedTerm: debouncedSearchTerm },
+    increaseCurrentPageSearch,
     updateArticles,
   } = useArticles();
+
+  const handleShowMoreBtnClick = () => {
+    increaseCurrentPageSearch();
+  };
 
   const getTopStories = async () => {
     try {
@@ -58,5 +61,7 @@ export function useHomePage() {
   return {
     articles,
     debouncedSearchTerm,
+
+    handleShowMoreBtnClick,
   };
 }

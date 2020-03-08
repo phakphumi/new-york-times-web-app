@@ -38,8 +38,9 @@ export function useSearchBox() {
     setContentIsNotLoading,
   } = useContentLoading();
   const {
+    search: { currentPage },
     updateArticles,
-    // appendArticles,
+    appendArticles,
     setDebouncedSearchTerm,
   } = useArticles();
 
@@ -47,11 +48,25 @@ export function useSearchBox() {
     setSearchTerm(e.target.value);
   };
 
-  const getArticles = async (term) => {
+  const searchArticles = async (debouncedSearchTerm) => {
     try {
       setContentIsLoading();
-      const response = await getArticlesByTerm(term);
+      const response = await getArticlesByTerm(debouncedSearchTerm);
       updateArticles(
+        transformArticles(get(response, ['data', 'response', 'docs']))
+      );
+    } catch {
+      history.push('/error');
+    } finally {
+      setContentIsNotLoading();
+    }
+  };
+
+  const showMoreArticles = async (debouncedSearchTerm, currentPage) => {
+    try {
+      setContentIsLoading();
+      const response = await getArticlesByTerm(debouncedSearchTerm, currentPage);
+      appendArticles(
         transformArticles(get(response, ['data', 'response', 'docs']))
       );
     } catch {
@@ -64,9 +79,15 @@ export function useSearchBox() {
   useEffect(() => {
     setDebouncedSearchTerm(debouncedSearchTerm);
     if (debouncedSearchTerm) {
-      getArticles(debouncedSearchTerm);
+      searchArticles(debouncedSearchTerm);
     }
   }, [debouncedSearchTerm]);
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      showMoreArticles(debouncedSearchTerm, currentPage);
+    }
+  }, [currentPage]);
 
   return {
     handleSearchTermChange,
