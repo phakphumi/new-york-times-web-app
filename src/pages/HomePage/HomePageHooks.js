@@ -1,5 +1,6 @@
 import { ARTICLE_URI_PREFIX } from '_constants';
 import { useContentLoading } from '_contexts';
+import { useArticles } from '_contexts/articlesHooks';
 import { getTopStoryArticles } from '_services/getTopStoryArticles';
 import {
   get,
@@ -8,10 +9,7 @@ import {
   startCase,
 } from 'lodash';
 import moment from 'moment';
-import {
-  useEffect,
-  useState,
-} from 'react';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function transformArticles(results) {
@@ -27,18 +25,23 @@ function transformArticles(results) {
 
 export function useHomePage() {
   const history = useHistory();
-  const [articles, setArticles] = useState([]);
-  const [currentSearchTerm, setCurrentSearchTerm] = useState(null);
   const {
     setContentIsLoading,
     setContentIsNotLoading,
   } = useContentLoading();
+  const {
+    articles,
+    search: {
+      debouncedTerm: debouncedSearchTerm,
+    },
+    updateArticles,
+  } = useArticles();
 
   const getTopStories = async () => {
     try {
       setContentIsLoading();
       const response = await getTopStoryArticles();
-      setArticles(
+      updateArticles(
         transformArticles(get(response, ['data', 'results']))
       );
     } catch {
@@ -49,16 +52,11 @@ export function useHomePage() {
   };
 
   useEffect(() => {
-    if (!currentSearchTerm) {
-      getTopStories();
-    }
-  }, [currentSearchTerm]);
+    getTopStories();
+  }, []);
 
   return {
     articles,
-    currentSearchTerm,
-
-    setArticles,
-    setCurrentSearchTerm,
+    debouncedSearchTerm,
   };
 }

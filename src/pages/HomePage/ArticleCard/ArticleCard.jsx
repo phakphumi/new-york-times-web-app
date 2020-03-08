@@ -37,7 +37,11 @@ export default function ArticleCard({
 ArticleCard.propTypes = {
   title: string.isRequired,
   abstract: string.isRequired,
-  thumbnailUrl: string.isRequired,
+  thumbnailUrl: string,
   publishedDate: string.isRequired,
   section: string.isRequired,
+};
+
+ArticleCard.defaultProps = {
+  thumbnailUrl: null,
 };

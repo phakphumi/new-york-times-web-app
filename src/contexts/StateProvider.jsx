@@ -10,6 +10,7 @@ export const ACTION_TYPE = {
   CONTENT_IS_LOADING: 'CONTENT_IS_LOADING',
   CONTENT_IS_NOT_LOADING: 'CONTENT_IS_NOT_LOADING',
   UPDATE_ARTICLES: 'UPDATE_ARTICLES',
+  UPDATE_ARTICLES_SEARCH: 'UPDATE_ARTICLES_SEARCH',
 };
 
 const initialState = {
@@ -41,9 +42,22 @@ function reducer(state, { type, ...restProps }) {
     case ACTION_TYPE.UPDATE_ARTICLES: {
       return {
         ...state,
-        artiticles: {
+        articles: {
           ...state.articles,
-          restProps,
+          ...restProps,
+        },
+      };
+    }
+    case ACTION_TYPE.UPDATE_ARTICLES_SEARCH: {
+      console.log({ state });
+      return {
+        ...state,
+        articles: {
+          ...state.articles,
+          search: {
+            ...state.articles.search,
+            ...restProps,
+          },
         },
       };
     }

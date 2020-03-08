@@ -17,27 +17,21 @@ import SearchBox from './SearchBox/SearchBox';
 export default function HomePage () {
   const {
     articles,
-    currentSearchTerm,
-
-    setArticles,
-    setCurrentSearchTerm,
+    debouncedSearchTerm,
   } = useHomePage();
-
+  console.log({ articles });
   return (
     <div>
       <Row gutter={[0, 16]}>
         <Col md={24}>
-          <SearchBox
-            setArticles={setArticles}
-            setHomePageSearchTerm={setCurrentSearchTerm}
-          />
+          <SearchBox />
         </Col>
       </Row>
       {
-        currentSearchTerm && (
+        debouncedSearchTerm && (
           <Row gutter={[0, 16]}>
             <Col>
-              Search Results for : <b>{currentSearchTerm}</b>
+              Search Results for : <b>{debouncedSearchTerm}</b>
             </Col>
           </Row>
         )

@@ -13,7 +13,7 @@ export function useArticles() {
 
   return {
     articles: articles.data,
-    search: { ...articles.data.search },
+    search: { ...articles.search },
     updateArticles: useCallback(
       (transformedArticles) => dispatch({
         type: ACTION_TYPE.UPDATE_ARTICLES,
@@ -30,6 +30,12 @@ export function useArticles() {
         ],
       }),
       [dispatch, articles.data]
+    ),
+    setDebouncedSearchTerm: useCallback(
+      (debouncedTerm) => dispatch({
+        type: ACTION_TYPE.UPDATE_ARTICLES_SEARCH,
+        debouncedTerm,
+      })
     ),
   };
 }

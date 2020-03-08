@@ -1,18 +1,11 @@
 import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
-import { func } from 'prop-types';
 import React from 'react';
 
 import { useSearchBox } from './SearchBoxHooks';
 
-function SearchBox({
-  setArticles,
-  setHomePageSearchTerm,
-}) {
-  const { handleSearchTermChange } = useSearchBox({
-    setArticles,
-    setHomePageSearchTerm,
-  });
+function SearchBox() {
+  const { handleSearchTermChange } = useSearchBox();
 
   return (
     <Input
@@ -22,14 +15,5 @@ function SearchBox({
     />
   );
 }
-
-SearchBox.propTypes = {
-  setArticles: func.isRequired,
-  setHomePageSearchTerm: func.isRequired,
-};
-
-SearchBox.defaultProps = {
-  homePageSearchTerm: null,
-};
 
 export default SearchBox;
