@@ -4,19 +4,27 @@ import React, {
   useReducer,
 } from 'react';
 
-
 export const StateContext = createContext();
 
 export const ACTION_TYPE = {
   CONTENT_IS_LOADING: 'CONTENT_IS_LOADING',
   CONTENT_IS_NOT_LOADING: 'CONTENT_IS_NOT_LOADING',
+  UPDATE_ARTICLES: 'UPDATE_ARTICLES',
 };
 
 const initialState = {
   isContentLoading: false,
+  articles: {
+    data: [],
+    search: {
+      isSearching: false,
+      debouncedTerm: null,
+      currentPage: 0,
+    },
+  },
 };
 
-function reducer(state, { type }) {
+function reducer(state, { type, ...restProps }) {
   switch (type) {
     case ACTION_TYPE.CONTENT_IS_LOADING: {
       return {
@@ -28,6 +36,15 @@ function reducer(state, { type }) {
       return {
         ...state,
         isContentLoading: false,
+      };
+    }
+    case ACTION_TYPE.UPDATE_ARTICLES: {
+      return {
+        ...state,
+        artiticles: {
+          ...state.articles,
+          restProps,
+        },
       };
     }
 
