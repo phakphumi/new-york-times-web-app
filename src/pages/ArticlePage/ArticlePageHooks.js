@@ -1,5 +1,5 @@
-import { useContentLoading } from '_/contexts';
 import { IMAGE_URL_PREFIX } from '_constants';
+import { useContentLoading } from '_contexts';
 import { getArticleById } from '_services/searchArticle';
 import { get } from 'lodash';
 import moment from 'moment';
