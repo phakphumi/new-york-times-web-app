@@ -24,3 +24,31 @@
 - when user enter to article page on `/article/:article_id`, it will render the content along with publication date and author. it also provides `read more` hyperlink for user who want to read full content.
 - when user click on back button, it will redirect user to the previous page.
 
+## Folder Structure Description
+
+```
+|-- .babelrc // contains my own babel config
+|-- .eslintrc // contains my own eslint config
+|-- config-overrides.js // used to override config to write my own eslint and babel
+|-- jsconfig.json // used to setup autocomplete for absolute import on vscode
+  |-- src
+    |-- components // a folder contains all shared and layout components (in this case just Layout)
+      |-- [Component].jsx // a file contains react jsx code
+      |-- [Component].module.scss // a file contain styling code for own component
+      |-- [Component]Hooks.js // a file contains custom hooks for component
+    |-- contexts // a folder contains context which used to be global state
+      |-- [name]Hooks.js // a file provides helper function and global state
+      |-- StateProvider.jsx // a file contains provider component which wrapped in app top level
+    |-- pages // a folder contains page level components
+      |-- [PageName] // a folder contains all code about page
+        |-- [LocalComponent] // a folder contains component which only used on this page
+          |-- *
+        |-- [PageName].jsx // a file contains react jsx code
+        |-- [PageName].module.scss // a file contain styling code for own component
+        |-- [PageName]Hooks.js // a file contains custom hooks for page
+    |-- services // a folder contains API call service
+    |-- utils // a folder contains all helper
+    |-- AppRouter.jsx // a file contains path wrapper
+    |-- constants.js // a file contains global constants
+
+```
