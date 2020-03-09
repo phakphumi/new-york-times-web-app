@@ -5,6 +5,7 @@
 2. run `yarn start`.
 3. enter to application with [http://localhost:3000](http://localhost:3000).
 4. enjoy.
+- Note: for another option you can view the app via [http://bit.ly/2Is9EZ0](http://bit.ly/2Is9EZ0) which I have deployed on Firebase.
 
 
 ## User Story
